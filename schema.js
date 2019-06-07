@@ -1,0 +1,37 @@
+import { buildSchema } from 'graphql';
+
+const schema = buildSchema(`
+    type Cliente {
+        id: ID
+        nombre: String
+        apellido: String
+        empresa: String
+        email: String
+        edad: Int
+        tipo: Tipocliente
+    }
+
+    enum Tipocliente {
+        BASICO
+        PREMIUM
+    }
+
+    input Clienteinput {
+        id: ID
+        nombre: String!
+        apellido: String!
+        empresa: String!
+        email: String!
+        edad: Int!
+        tipo: Tipocliente!
+    }
+
+    type Mutation {
+        crearCliente(input: Clienteinput) : Cliente
+    }
+    type Query {
+        getCliente(id: ID) : Cliente
+    }
+    `);
+
+export default schema;
